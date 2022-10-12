@@ -1,7 +1,6 @@
 package com.prueba.carCenter.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -18,18 +17,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.prueba.carCenter.dto.MecanicosDto;
-import com.prueba.carCenter.entity.Mecanicos;
-import com.prueba.carCenter.exception.MecanicoException;
 import com.prueba.carCenter.service.MecanicosServiceI;
 
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.asm.Advice.Return;
 
+/**
+ * Controlador con las diferentes peticiones Http el cual interactua con la 
+ * vista y la capa de datos. 
+ * @author RUBEN DARIO PEREZ CORREDOR
+ * @since 11/10/2022
+ */
 @Controller
 @Slf4j
 @RequestMapping("/mecanico")
 public class MecanicosController {
 
+	/**
+	 * Inyeccion del servicio Interface.
+	 * @author RUBEN DARIO PEREZ CORREDOR
+	 * @since 11/10/2022
+	 */
 	@Autowired
 	private MecanicosServiceI mecanicosServiceI;
 
@@ -43,11 +50,12 @@ public class MecanicosController {
 	}
 
 	/**
+	 * Vista donde se lista en una tabla los mecanicos que se encuentran con
+	 * estado ACTIVO.
 	 * @author RUBEN DARIO PEREZ CORREDOR
 	 * @since 09/10/2022
 	 * @param model
-	 * @return Vista donde se lista en una tabla los mecanicos que se encuentran con
-	 *         estado ACTIVO.
+	 * @return Vista principal con la lista de Mecanicos.
 	 */
 	@GetMapping("/lista")
 	public String listarMecanicos(Model model) {
@@ -60,11 +68,14 @@ public class MecanicosController {
 	}
 
 	/**
+	 * Retorna el formulario para la Creacion del Mecanico.
+	 * En este formulario se diligencian los campos requeridos 
+	 * para la creacion del nuevo Mecanico.
 	 * @author RUBEN DARIO PEREZ CORREDOR
 	 * @since 09/10/2022
 	 * @param model
 	 * @param documentoMecanico
-	 * @return Prepara la creacion del nuevo mecanico en la aplicacion.
+	 * @return Formulario para la creacion del Mecanico.
 	 * @throws Exception
 	 */
 	@GetMapping("/nuevo")
@@ -76,6 +87,17 @@ public class MecanicosController {
 		return "/mecanico/nuevo";
 	}
 	
+	/**
+	 * Retorna el formulario para la edicion del Mecanico.
+	 * En este formulario se la la edicion del estado del Mecanico
+	 * para validar el listado.
+	 * @author RUBEN DARIO PEREZ CORREDOR
+	 * @since 09/10/2022
+	 * @param model
+	 * @param documentoMecanico
+	 * @return Formulario para la edicion del Mecanico.
+	 * @throws Exception
+	 */
 	@GetMapping("/editar/{documento}")
 	public String editar(Model model, @PathVariable("documento") Integer documentoMecanico) throws Exception {
 		
@@ -91,14 +113,15 @@ public class MecanicosController {
 	}
 
 	/**
+	 * Realiza el proceso de guardado en la base de datos del nuevo 
+	 * Mecanico a traves del procedimiento almacenado..
 	 * @author RUBEN DARIO PEREZ CORREDOR
 	 * @since 09/10/2022
 	 * @param mecanicosDto
 	 * @param result
 	 * @param model
 	 * @param attribute
-	 * @return Realiza la operacion de guardar un nuevo mecanico dentro de la
-	 * aplicacion.
+	 * @return Nuevo Mecanico.
 	 */
 	@PostMapping("/guardar")
 	public String crearMecanico(@Valid @ModelAttribute MecanicosDto mecanicosDto, BindingResult result, Model model,
@@ -118,6 +141,18 @@ public class MecanicosController {
 		return "redirect:/mecanico/lista";
 	}
 	
+	
+	/**
+	 * Realiza la edicion del Mecanico excluyendo el numero de documento
+	 * el cual corresponde al Id.
+	 * @author RUBEN DARIO PEREZ CORREDOR
+	 * @since 09/10/2022
+	 * @param mecanicosDto
+	 * @param result
+	 * @param model
+	 * @param attribute
+	 * @return Mecanico editado.
+	 */
 	@PostMapping("/editar")
 	public String editarMecanico(@Valid @ModelAttribute MecanicosDto mecanicosDto, BindingResult result, Model model,
 			RedirectAttributes attribute) {
@@ -137,11 +172,13 @@ public class MecanicosController {
 	}
 
 	/**
+	 * Retorna el formulario de detalle del Mecanico el cual 
+	 * presenta la informacion correspondiente al Mecanico seleccionado.
 	 * @author RUBEN DARIO PEREZ CORREDOR
 	 * @since 09/10/2022
 	 * @param model
 	 * @param documentoMecanico
-	 * @return Presenta la informacion registrada del mecanico consultado.
+	 * @return Formulario con la informacion del Mecanico.
 	 * @throws Exception
 	 */
 	@GetMapping("/detalle/{id}")
@@ -156,11 +193,12 @@ public class MecanicosController {
 	}
 
 	/**
+	 * Realiza la operacion de borrado del mecanico seleccionado.
 	 * @author RUBEN DARIO PEREZ CORREDOR
 	 * @since 09/10/2022
 	 * @param documentoMecanico
 	 * @param attribute
-	 * @return Realiza la operacion de borrado del mecanico seleccionado.
+	 * @return Mecanico eliminado.
 	 * @throws Exception
 	 */
 	@GetMapping("/borrar/{id}")

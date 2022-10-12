@@ -2,6 +2,13 @@ package com.prueba.carCenter.dto;
 
 import com.prueba.carCenter.entity.Mecanicos;
 
+/**
+ * Clase de transferencia de datos para manejar la clase 
+ * Mecanicos.
+ * @author RUBEN DARIO PEREZ CORREDOR
+ * @since 11/10/2022
+ *
+ */
 public class MecanicosDto {
 
     private Integer documento;
@@ -16,6 +23,10 @@ public class MecanicosDto {
     private String estado;
     private Integer horasTrabajadas;
 	
+    /**
+     * Convierte la clase DTO al Objeto Mecanico.
+     * @return
+     */
     public Mecanicos toEntity() {
     	Mecanicos mecanicos = new Mecanicos();
     	mecanicos.setDocumento(this.documento);

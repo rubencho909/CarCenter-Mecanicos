@@ -2,6 +2,13 @@ package com.prueba.carCenter.exception;
 
 import org.springframework.http.HttpStatus;
 
+
+/**
+ * Clase que Encargada de Manejar las excepciones.
+ * @author RUBEN DARIO PEREZ CORREDOR
+ * @since 09/10/2022
+ *
+ */
 public class RequestExceptionHandler extends RuntimeException{
 	
 	private HttpStatus httpStatus;

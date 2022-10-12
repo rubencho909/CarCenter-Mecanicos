@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.prueba.carCenter.dto.MecanicosDto;
 import com.prueba.carCenter.entity.Mecanicos;
-import com.prueba.carCenter.exception.MecanicoException;
 import com.prueba.carCenter.exception.RequestExceptionHandler;
 import com.prueba.carCenter.repository.MecanicosRepository;
 
