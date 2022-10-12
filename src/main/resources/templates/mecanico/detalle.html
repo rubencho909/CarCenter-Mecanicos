@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+<header th:replace="plantilla/template :: header"></header>
+
+<div class="container">
+    <h1 th:text="${titulo}"></h1>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            Detalles del Mecanico
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="'Nombres: ' + ${mecanico.primerNombre} + ${mecanico.segundoNombre} + ${mecanico.primerApellido} + ${mecanico.segundoApellido}"></h5>
+            <p class="card-text" th:text="'Tipo. Documento: ' + ${mecanico.tipoDocumento}"></p>
+            <p class="card-text" th:text="'No. Documento: ' + ${mecanico.documento}"></p>
+            <p class="card-text" th:text="'Dirección: ' + ${mecanico.direccion}"></p>
+            <p class="card-text" th:text="'Dirección: ' + ${mecanico.celular}"></p>
+            <p class="card-text" th:text="'Dirección: ' + ${mecanico.email}"></p>
+            <p class="card-text" th:text="'Horas Trabajadas: ' + ${mecanico.horasTrabajadas} + 'Horas'"></p>
+            <a th:href="@{/mecanico/lista}" class="btn btn-outline-info">
+                <i class="fa-solid fa-circle-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

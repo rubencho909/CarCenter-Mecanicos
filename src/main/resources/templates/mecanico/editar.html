@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+				<form class="row g-3 needs-validation" novalidate
+					th:action="@{/mecanico/editar}" method="post"
+					th:object="${mecanico}">
+
+					<div class="col-6">
+					
+						<div class="mb-3">
+							<label for="documento" class="form-label">No. Documento</label> <input
+								type="number" disabled="disabled" th:field="*{documento}" class="form-control"
+								required id="documento" placeholder="No. Documento">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+
+					</div>
+
+					<div class="col-6">
+						
+						<div class="mb-3">
+							<input type="hidden" th:field="*{documento}"> <label
+								class="form-label" for="tipoDocumento">Tipo Documento:</label> 
+							<select th:field="*{tipoDocumento}" class="form-select" 
+									name="tipoDocumento" id="tipoDocumento" required="required">
+								<option value="">Seleccione ...</option>
+								<option value="TI">Tarjeta de Identidad</option>
+								<option value="CC">Cedula de Ciudadania</option>
+								<option value="CE">Cedula Extranjeria</option>
+							</select>
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+
+					</div>
+					
+					<div class="col-3">
+						<div class="mb-3">
+							<label for="primerNombre" class="form-label">Primer
+								Nombre</label> <input type="text" th:field="*{primerNombre}"
+								class="form-control" required id="primerNombre"
+								placeholder="Primer Nombre" autocomplete="off">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+					</div>
+					
+					<div class="col-3">
+						<div class="mb-3">
+							<label for="segundoNombre" class="form-label">Segundo
+								Nombre</label> <input type="text" th:field="*{segundoNombre}"
+								class="form-control" id="segundoNombre"
+								placeholder="Segundo Nombre" autocomplete="off">
+						</div>
+					</div>
+					
+					<div class="col-3">
+						<div class="mb-3">
+							<label for="primerApellido" class="form-label">Primer
+								Apellido</label> <input type="text" th:field="*{primerApellido}"
+								class="form-control" required id="primerApellido"
+								placeholder="Primer Apellido" autocomplete="off">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+					</div>
+					
+					<div class="col-3">
+						<div class="mb-3">
+							<label for="segundoApellido" class="form-label">Segundo
+								Apellido</label> <input type="text" th:field="*{segundoApellido}"
+								class="form-control" id="segundoApellido"
+								placeholder="Segundo Apellido" autocomplete="off">
+						</div>
+					</div>
+					
+					<div class="col-4">
+						<div class="mb-3">
+							<label for="email" class="form-label">Email</label> <input
+								type="email" th:field="*{email}" class="form-control" required
+								id="email" placeholder="Email" autocomplete="off">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+
+					</div>
+
+					<div class="col-4">
+						<div class="mb-3">
+							<label for="celular" class="form-label">Celular</label> <input
+								type="text" th:field="*{celular}" class="form-control" required
+								id="celular" placeholder="Celular" autocomplete="off">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+					</div>
+
+					<div class="col-4">
+						<div class="mb-3">
+							<label for="direccion" class="form-label">Dirección</label> <input
+								type="text" th:field="*{direccion}" class="form-control"
+								required id="direccion" placeholder="Dirección"
+								autocomplete="off">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+					</div>
+					
+					<div class="col-6">
+						<div class="mb-3">
+							<label for="horasTrabajadas" class="form-label">Horas Trabajadas</label> <input
+								type="number" th:field="*{horasTrabajadas}" class="form-control"
+								required id="horasTrabajadas" placeholder="Horas Trabajadas"
+								autocomplete="off">
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+					</div>
+					
+					<div class="col-6">
+						<div class="mb-3">
+							<label class="form-label" for="estado">Estadoo:</label> 
+							<select th:field="*{estado}" class="form-select" 
+									name="estado" id="estado" required="required">
+								<option value="">Seleccione ...</option>
+								<option value="ACTIVO">Activo</option>
+								<option value="INACTIVO">Inactivo</option>
+							</select>
+							<div class="valid-feedback">Campo Ok</div>
+							<div class="invalid-feedback">Campo Requerido</div>
+						</div>
+
+					</div>
+
+					<div class="d-grid gap-2 col-6 mx-auto">
+						<button type="submit" class="btn btn-outline-success btn-block">
+							<i class="fa-solid fa-floppy-disk"></i> Editar
+						</button>
+					</div>
+
+				</form>
+				<br> <a th:href="@{/mecanico/lista}"
+					style="text-decoration: none;">
+					<div class="d-grid gap-2 col-6 mx-auto">
+						<button class="btn btn-outline-info btn-block">
+							<i class="fa-solid fa-circle-left"></i> Volver
+						</button>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+	
+</body>
+</html>
