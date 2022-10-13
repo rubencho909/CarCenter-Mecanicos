@@ -11,7 +11,10 @@ import com.prueba.carCenter.entity.Mecanicos;
 @Repository
 public interface MecanicosRepository extends JpaRepository<Mecanicos, Integer> {
 	
+	@Query(value = "SELECT * FROM MECANICOS WHERE ESTADO = ?1 AND ROWNUM < 11 ORDER BY HORAS_TRABAJADAS ASC", nativeQuery = true)
 	public List<Mecanicos> findByEstadoOrderByHorasTrabajadasAsc(String estado);
+	
+	//public List<Mecanicos> findByEstadoOrderByHorasTrabajadasAsc(String estado);
 	
 	@Query(value = "{call pa_mecanicos_insertar(:documento, :tipo_documento, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :celular, :direccion, :email, :estado, :horas_trabajadas)}", nativeQuery = true)
 	void pamecanicosinsertar(
